@@ -6,6 +6,8 @@ public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
 
+    private Vector2 acceleration;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -13,19 +15,28 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        Acceleration();
         Movement();
+    }
+
+    private void Acceleration()
+    {
+        if (Input.GetKey(KeyCode.S))
+        {
+            acceleration += new Vector2(0, Input.GetAxis("Horizontal"));
+        }
     }
 
     private void Movement()
     {
         if(Input.GetKey(KeyCode.W))
         {
-            rb.position += new Vector2(0, 0.1f);
+            
         }
 
         if (Input.GetKey(KeyCode.S))
         {
-            rb.position += new Vector2(0, -0.1f);
+            rb.AddForce(acceleration);
         }
 
         if (Input.GetKey(KeyCode.A))
