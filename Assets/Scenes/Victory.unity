@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -331,7 +331,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Game Over
+  m_Text: YOU WON!
 --- !u!222 &889418956
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -501,7 +501,7 @@ GameObject:
   - component: {fileID: 2094324465}
   - component: {fileID: 2094324464}
   m_Layer: 5
-  m_Name: Restart
+  m_Name: GoToHub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -523,8 +523,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000015259, y: -78.6}
-  m_SizeDelta: {x: 260, y: 34.31}
+  m_AnchoredPosition: {x: 0.0000076294, y: -79.93}
+  m_SizeDelta: {x: 329.28, y: 34.31}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2094324464
 MonoBehaviour:
@@ -557,9 +557,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Press any button to try again
-
-'
+  m_Text: Press any button to return to the hub
 --- !u!222 &2094324465
 CanvasRenderer:
   m_ObjectHideFlags: 0

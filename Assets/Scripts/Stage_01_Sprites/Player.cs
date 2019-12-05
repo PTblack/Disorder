@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] Slider happinessBar;
 
+    [SerializeField] Allucinations a1;
+    [SerializeField] Allucinations a2;
 
     float hAxis;
     float vAxis;
@@ -22,6 +24,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        LastScene.lastScene = "Stage_01";
         rigidBody = GetComponent<Rigidbody2D>();
 
         happiness = 100;
@@ -38,10 +41,12 @@ public class Player : MonoBehaviour
         happiness -= 2 * Time.deltaTime;
         happinessDisplay = (int)Math.Round(happiness, 0);
 
-        if (happinessDisplay % 2 == 0) Debug.Log(happinessDisplay);
-
         happinessBar.value = happinessDisplay;
 
+        if (happiness <= 0)
+        {
+            SceneManager.LoadScene("GameOver");
+        }
     }
 
     void FixedUpdate()
@@ -58,15 +63,31 @@ public class Player : MonoBehaviour
             collider.GetComponent<SpriteRenderer>().enabled = false;
             collider.GetComponent<Collider2D>().enabled = false;
         }
+
         if (collider.tag == "Voz")
         {
             collider.GetComponent<SpriteRenderer>().enabled = false;
         }
 
+        if (collider.tag == "Alucination")
+        {
+            happiness -= 10;
+        }
+
+        if (collider.tag == "Zone01")
+        {
+            a1.enabled = true;
+        }
+        
+        if (collider.tag == "Zone02")
+        {
+            a2.enabled = true;
+        }
+
         if (collider.tag == "Exit")
         {
-            SceneManager.LoadScene("Hub");
-
+            if (happiness >= 65) SceneManager.LoadScene("Victory");
+            else SceneManager.LoadScene("GameOver");
         }
     }
 
@@ -75,6 +96,16 @@ public class Player : MonoBehaviour
         if (collider.tag == "Voz")
         {
             collider.GetComponent<SpriteRenderer>().enabled = true;
+        }
+
+        if (collider.tag == "Zone01")
+        {
+            a1.enabled = false;
+        }
+        
+        if (collider.tag == "Zone02")
+        {
+            a2.enabled = false;
         }
     }
 }

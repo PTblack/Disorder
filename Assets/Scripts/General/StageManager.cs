@@ -10,51 +10,30 @@ public class StageManager : MonoBehaviour
     private void Update()
     {
         currentScene = SceneManager.GetActiveScene();
-        if (currentScene.name == "TitleScreen")
+        if (currentScene.name == "Victory")
         {
-            if (Input.GetKeyDown("space"))
+            if (Input.GetKeyDown("x") || Input.GetKeyDown("c") || Input.GetKeyDown("v"))
             {
-                MainMenu();
+                Hub();
+            }
+        }
+
+        if (currentScene.name == "GameOver")
+        {
+            if (Input.GetKeyDown("x") || Input.GetKeyDown("c") || Input.GetKeyDown("v"))
+            {
+                PreviousScene();
             }
         }
     }
 
-
-
-
-    public void TitleScreen()
+    public void Hub()
     {
-        SceneManager.LoadScene("TitleScreen");
+        SceneManager.LoadScene("Hub");
     }
 
-    public void MainMenu()
+    public void PreviousScene()
     {
-        SceneManager.LoadScene("MainMenu");
-    }
-
-    public void CityScene()
-    {
-        SceneManager.LoadScene("CityScene");
-    }
-
-    public void UndergroundScene()
-    {
-        SceneManager.LoadScene("UndergroundScene");
-    }
-
-    public void WinScreen()
-    {
-        SceneManager.LoadScene("WinScreen");
-    }
-
-    public void RestartScene()
-    {
-        Scene currentScene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(currentScene.name);
-    }
-
-    public void Quit()
-    {
-        Application.Quit();
+        SceneManager.LoadScene(LastScene.lastScene);
     }
 }

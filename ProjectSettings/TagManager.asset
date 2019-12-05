@@ -7,6 +7,9 @@ TagManager:
   - Heart
   - Voz
   - Exit
+  - Zone01
+  - Zone02
+  - Alucination
   layers:
   - Default
   - TransparentFX
@@ -17,7 +20,7 @@ TagManager:
   - 
   - 
   - Platforms
-  - 
+  - Lights
   - 
   - 
   - 
