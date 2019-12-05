@@ -36,8 +36,6 @@ public class Stage2PlayerMovement : MonoBehaviour
         A = Input.GetKey(KeyCode.A);
         D = Input.GetKey(KeyCode.D);
         jump = Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.X);
-
-        Debug.Log(isGrounded);
     }
     // Update is called once per frame
     void FixedUpdate()
