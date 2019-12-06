@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class Stage2Button : MonoBehaviour
 {
-    bool pressedDown;
+    [SerializeField]
+    GameObject doorToOpen;
+
+    private bool pressedDown;
 
     private void FixedUpdate()
     {
-        Debug.Log(pressedDown);
+        if (pressedDown)
+            doorToOpen.GetComponent<Stage2ElevatorBehaviour>().openClosed = true;
+        else
+            doorToOpen.GetComponent<Stage2ElevatorBehaviour>().openClosed = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
