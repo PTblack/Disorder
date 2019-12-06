@@ -7,14 +7,14 @@ public class Stage2Button : MonoBehaviour
     [SerializeField]
     GameObject doorToOpen;
 
-    private bool pressedDown;
+    public bool pressedDown { get; private set; }
 
     private void FixedUpdate()
     {
-        if (pressedDown)
-            doorToOpen.GetComponent<Stage2ElevatorBehaviour>().openClosed = true;
-        else
-            doorToOpen.GetComponent<Stage2ElevatorBehaviour>().openClosed = false;
+        //if (pressedDown)
+        //    doorToOpen.GetComponent<Stage2ElevatorBehaviour>().openClosed = true;
+        //else
+        //    doorToOpen.GetComponent<Stage2ElevatorBehaviour>().openClosed = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -23,6 +23,7 @@ public class Stage2Button : MonoBehaviour
         {
             pressedDown = true;
             gameObject.transform.position = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y - 0.2f);
+            doorToOpen.GetComponent<Collider2D>().enabled = true;
         }
     }
 
@@ -32,6 +33,7 @@ public class Stage2Button : MonoBehaviour
         {
             pressedDown = false;
             gameObject.transform.position = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y + 0.2f);
+            doorToOpen.GetComponent<Collider2D>().enabled = false;
         }
     }
 }

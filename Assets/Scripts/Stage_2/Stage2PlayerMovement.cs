@@ -7,6 +7,7 @@ public class Stage2PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 movementVector;
     private bool isGrounded;
+    private bool inverted = false;
 
     private const float speed = 50f;
     [SerializeField] private int timer = 0;
@@ -29,7 +30,25 @@ public class Stage2PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag.Equals("Invert"))
+        StartCoroutine(Invert(true));
+       
 
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+
+        //if (collision.gameObject.tag.Equals("Invert"))
+        //    StartCoroutine(Invert(false));
+
+    }
+
+    IEnumerator Invert(bool invert) {
+        yield return new WaitForSeconds(0.2f);
+        inverted = invert;
+    }
     void Update()
     {
         isGrounded = Physics2D.Raycast(transform.position, Vector2.down, 1, ~ignoreLayers).collider != null;
@@ -49,12 +68,14 @@ public class Stage2PlayerMovement : MonoBehaviour
         movementVector = rb.velocity;
 
         if (A)
-            movementVector.x -= speed * Time.fixedDeltaTime;
-
+        {
+            movementVector.x -= (inverted ?-speed:speed ) * Time.fixedDeltaTime;
+            
+        }
         if (D)
-            movementVector.x += speed * Time.fixedDeltaTime;
+            movementVector.x += (inverted ? -speed : speed) * Time.fixedDeltaTime;
 
-        if (jump && timer <= 5)
+            if (jump && timer <= 5)
         {
             timer++;
 
