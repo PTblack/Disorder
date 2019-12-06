@@ -24,7 +24,8 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        LastScene.lastScene = "Stage_01";
+        LastScene.GetCurrentSceneName();
+
         rigidBody = GetComponent<Rigidbody2D>();
 
         happiness = 100;
